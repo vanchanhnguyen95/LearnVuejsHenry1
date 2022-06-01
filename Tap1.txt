@@ -1,0 +1,24 @@
+-Làm thế nào để bắt đầu Vue?
+-> Cài node js
+
+-Cài vue/cli
+npm i -g @vue/cli
+npm i vue-cli
+npm install -g vue-cli
+
+-Kiểm tra phiên bản
+vue --version
+
+-Tạo 1 vue app
+vue create my-vue app
+
+-cd đến folder vừa tạo
+
+-Chạy project
+npm run serve
+
+-Nguyên lý chính của app chạy như nào?
+file javascript chính của app vue là file main.js
+Nó sẽ tạo app từ App.vue
+
+- style mà có scope thì style chỉ áp dụng trên file hiện tại thôi
