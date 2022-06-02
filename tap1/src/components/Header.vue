@@ -13,5 +13,6 @@ export default {
         background: #333;
         text-align: center;
         padding: 10px;
+        color: #fff;
     }
 </style>
