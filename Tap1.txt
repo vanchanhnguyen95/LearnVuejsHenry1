@@ -22,3 +22,18 @@ file javascript chính của app vue là file main.js
 Nó sẽ tạo app từ App.vue
 
 - style mà có scope thì style chỉ áp dụng trên file hiện tại thôi
+
+- Xóa cache đi:
+npm install npm@latest -g
+npm cache clean --force 
+
+-- Push source code nhớ push cả các file để sau khi lấy về chạy npm ko bị lỗi:
+.gitignore
+.prettierrc
+babel.config
+jsconfig
+package
+package-lock
+vue.config
+
+npm update --depth=9999 vue-loader
