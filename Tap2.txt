@@ -1,0 +1,35 @@
+
+- Xóa cache đi:
+npm install npm@latest -g
+npm cache clean --force 
+
+-- Push source code nhớ push cả các file để sau khi lấy về chạy npm ko bị lỗi:
+.gitignore
+.prettierrc
+babel.config
+jsconfig
+package
+package-lock
+vue.config
+
+npm update --depth=9999 vue-loader
+
+Tap 2
+Trạng thái khởi điểm của 1 component
+
+- Muốn sử dụng trạng thái khởi điểm thì dùng:
+   import { ref } from 'vue'
+	có thêm setup
+	
+- v-for đi cùng v-bind:key
+<TodoItem
+    v-for="todo in todos"
+    :key="todo.id"
+    :todoProps="todo"
+    @item-completed="markComplete"
+    @delete-item="deleteTodo"
+  />
+</template>
+
+
+- props: sử dụng để truyển dữ liệu giữa các component, đặc biệt là giữa component cha cho component con
