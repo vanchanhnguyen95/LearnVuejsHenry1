@@ -20,6 +20,8 @@ Trạng thái khởi điểm của 1 component
 - Muốn sử dụng trạng thái khởi điểm thì dùng:
    import { ref } from 'vue'
 	có thêm setup
+	+ Xuất khẩu trạng thái khởi điểm
+- directive của Vue: v-for đi cùng v-bind:key
 	
 - v-for đi cùng v-bind:key
 <TodoItem
@@ -31,5 +33,45 @@ Trạng thái khởi điểm của 1 component
   />
 </template>
 
+- Chi tiết của 1 conponent thành 1 component
++Cách chia componentcon
 
 - props: sử dụng để truyển dữ liệu giữa các component, đặc biệt là giữa component cha cho component con
+-Trạng thái khởi điểm của 1 component ref
+- 2 cái directive
+
+====================
+Truyền dữ liệu khởi tạo từ component cha xuống component con: Sử dụng props
+   <TodoItem  v-for="todo in todos" v-bind:key="todo" v-bind:todoProps="todo"/>  (v-bind:todoProps="todo")
+- Xuống dưới component con nhận: props: ['todoProps'],
+	export default {
+    name: 'TodoItem',
+    props: ['todoProps'],
+    setup() {
+        
+    },
+	}
+--
+<template>
+    <p>{{todoProps}}</p>
+</template>
+<script>
+export default {
+    name: 'TodoItem',
+    props: ['todoProps'],
+    setup() {
+        
+    },
+}
+</script>
+<style scoped>
+
+</style>
+   
+====================
+
+
+
+
+
+
