@@ -41,7 +41,7 @@ Trạng thái khởi điểm của 1 component
 - 2 cái directive
 
 ====================
-Truyền dữ liệu khởi tạo từ component cha xuống component con: Sử dụng props
+- Sử dụng props: truyền dữ liệu khởi tạo từ component cha xuống component con
    <TodoItem  v-for="todo in todos" v-bind:key="todo" v-bind:todoProps="todo"/>  (v-bind:todoProps="todo")
 - Xuống dưới component con nhận: props: ['todoProps'],
 	export default {
@@ -69,6 +69,31 @@ export default {
 </style>
    
 ====================
+-- Cú pháp đưa vào id động
+<p class="todo-item is-completed" :id="new_id">
+        <input type="checkbox"/>
+        {{todoProps.title}}
+        <button class="btn btn-primary del-btn">Delete</button>
+    </p>
+	
+import { ref } from 'vue'
+export default {
+    name: 'TodoItem',
+    props: ['todoProps'],
+    setup() {
+        const new_id = ref('my-new-id')
+        return {
+            new_id
+        }
+    },
+}
+
+-- Cú pháp đưa vào nhiều class động
+<p :class="['todo-item',todoProps.completed ? 'is-completed' : '']" :id="new_id">
+	<input type="checkbox"/>
+	{{todoProps.title}}
+	<button class="btn btn-primary del-btn">Delete</button>
+</p>
 
 
 
