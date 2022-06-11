@@ -5,7 +5,13 @@
     <p>Việc 3</p>
 </div> -->
 <!-- <p v-for="todo in todos" v-bind:key="todo.id">{{todo}}</p> -->
-    <TodoItem  v-for="todo in todos" v-bind:key="todo.id" v-bind:todoProps="todo"/>
+    <TodoItem  
+     v-for="todo in todos"
+     :key="todo.id"
+     :todoProps="todo"
+     @item-completed="markItemComplete"
+     @delete-item="deleteTodo"
+     />
 </template>
 <script>
 import { ref } from 'vue'
@@ -36,12 +42,12 @@ export default {
             {
                 id: 4,
                 title: ' Viec 4',
-                completed: true
+                completed: false
             },
             {
                 id: 5,
                 title: ' Viec 5',
-                completed: true
+                completed: false
             },
             {
                 id: 6,
@@ -51,12 +57,25 @@ export default {
             {
                 id: 7,
                 title: ' Viec 7',
-                completed: true
+                completed: false
             }
-            ])
+        ])
+        
+        const markItemComplete = id => {
+            // console.log(id)
+            todos.value = todos.value.map(todo => {
+                if(todo.id === id) todo.completed = !todo.completed
+                return todo
+            })
+        }
+        const deleteTodo = id => {
+            todos.value = todos.value.filter(todo => todo.id !== id)
+        }
 
         return {
-            todos
+            todos,
+            markItemComplete,
+            deleteTodo
         }
     }
 }

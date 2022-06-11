@@ -5,21 +5,30 @@
         <button class="btn btn-primary del-btn">Delete</button>
     </p> -->
     <p :class="['todo-item',todoProps.completed ? 'is-completed' : '']" :id="new_id">
-        <input type="checkbox"  :checked="todoProps.completed"/>
+        <input type="checkbox"  :checked="todoProps.completed" @change="markItemCompleted"/>
         {{todoProps.title}}
-        <button class="btn btn-primary del-btn">Delete</button>
+        <button class="btn btn-primary del-btn" @click="deleteItem">Delete</button>
     </p>
 </template>
 <script>
-
-import { ref } from 'vue'
+// import { ref } from 'vue'
 export default {
     name: 'TodoItem',
     props: ['todoProps'],
-    setup() {
-        const new_id = ref('my-new-id')
+    setup(props, context) {
+        // const new_id = ref('my-new-id')
+        // return {
+        //     new_id
+        // }
+        const markItemCompleted = () => {
+            context.emit('item-completed', props.todoProps.id)
+        }
+        const deleteItem = () => {
+            context.emit('delete-item', props.todoProps.id)
+        }
         return {
-            new_id
+            markItemCompleted,
+            deleteItem
         }
     },
 }
