@@ -1,0 +1,130 @@
+
+- Xóa cache đi:
+npm install npm@latest -g
+npm cache clean --force 
+
+-- Push source code nhớ push cả các file để sau khi lấy về chạy npm ko bị lỗi:
+.gitignore
+.prettierrc
+babel.config
+jsconfig
+package
+package-lock
+vue.config
+
+npm update --depth=9999 vue-loader
+
+Tap 2
+Trạng thái khởi điểm của 1 component
+
+- Muốn sử dụng trạng thái khởi điểm thì dùng:
+   import { ref } from 'vue'
+	có thêm setup
+	+ Xuất khẩu trạng thái khởi điểm
+- directive của Vue: v-for đi cùng v-bind:key
+	
+- v-for đi cùng v-bind:key
+<TodoItem
+    v-for="todo in todos"
+    :key="todo.id"
+    :todoProps="todo"
+    @item-completed="markComplete"
+    @delete-item="deleteTodo"
+  />
+</template>
+
+- Chi tiết của 1 conponent thành 1 component
++Cách chia componentcon
+
+- props: sử dụng để truyển dữ liệu giữa các component, đặc biệt là giữa component cha cho component con
+-Trạng thái khởi điểm của 1 component ref
+- 2 cái directive
+
+====================
+- Sử dụng props: truyền dữ liệu khởi tạo từ component cha xuống component con
+   <TodoItem  v-for="todo in todos" v-bind:key="todo" v-bind:todoProps="todo"/>  (v-bind:todoProps="todo")
+- Xuống dưới component con nhận: props: ['todoProps'],
+	export default {
+    name: 'TodoItem',
+    props: ['todoProps'],
+    setup() {
+        
+    },
+	}
+--
+<template>
+    <p>{{todoProps}}</p>
+</template>
+<script>
+export default {
+    name: 'TodoItem',
+    props: ['todoProps'],
+    setup() {
+        
+    },
+}
+</script>
+<style scoped>
+
+</style>
+   
+====================
+-- Cú pháp đưa vào id động
+<p class="todo-item is-completed" :id="new_id">
+        <input type="checkbox"/>
+        {{todoProps.title}}
+        <button class="btn btn-primary del-btn">Delete</button>
+    </p>
+	
+import { ref } from 'vue'
+export default {
+    name: 'TodoItem',
+    props: ['todoProps'],
+    setup() {
+        const new_id = ref('my-new-id')
+        return {
+            new_id
+        }
+    },
+}
+
+-- Cú pháp đưa vào nhiều class động
+<p :class="['todo-item',todoProps.completed ? 'is-completed' : '']" :id="new_id">
+	<input type="checkbox"/>
+	{{todoProps.title}}
+	<button class="btn btn-primary del-btn">Delete</button>
+</p>
+
+== Tap 3
+- Truyền sự kiện giữa các copenent
+ + gach ngang qua nếu completed là true, checkbox là true
+- Truyền sự kiện từ component con lên component mẹ
+  + dùng context: context.emit()
+  + nó sẽ phát đi 1 tín hiệu từ component con, mình sẽ đặt tên cho nó
+  + component mẹ sẽ nhận tín hiệu có dạng: v-on: tên tín hiệu
+  + v-bind viết tắt là:  v-bind: => :
+  + v-on viết tắt là: v-on: -> @
+
+========== Tap 4: Xử lý Form và input cơ bản
+- v-model: nối giữa người dùng gửi vào và data của chúng ta
+- event.preventDefault(): để chống lại hành động mặc định của các form
+- component mẹ nhận tín hiệu
+- Xử lý lỗi mỗi lần thêm 1 id mới
+ + Lỗi quy tắc: mỗi key phải là một giá trị đặc trưng (unit)
+ + Xử dụng thư viện: npm i uuid (tự sản xuất ra 1 id đặc trứng cho mình)
+ 
+========== Tap 5: Nhập dữ liệu linh hoạt từ backend API
+- Sử dụng server giả lập: https://jsonplaceholder.typicode.com/todos
++ Bỏ tất cả phần từ trong arrar đã khởi tạo đi
+- Cài thêm 1 thư viện axios:
++ Là 1 thư viện js để tạo ra những https request yêu cầu tới 1 api nào đó, 1 trang web nào đó
++ Lệnh: npm i axios
++ Là 1 thừ viện sử dụng bất đồng bộ
+const getAllTodos = async () => {
+            try {
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+	

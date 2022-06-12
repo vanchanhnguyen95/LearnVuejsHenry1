@@ -7,7 +7,7 @@
 <script>
 
 import {ref} from 'vue'
-import {v4 as uuidv4} from 'uuid'
+// import {v4 as uuidv4} from 'uuid' // bỏ đi vì backend ko cần
 
 export default ({
     name: 'AddTodo',
@@ -16,7 +16,7 @@ export default ({
         const addItem = event => {
             event.preventDefault()  //  để chống lại hành động mặc định của các form
             const newItem = {
-                id: uuidv4(),
+                // id: uuidv4(), bỏ đi vì backend không cần
                 title: title.value,
                 completed: false
             }
