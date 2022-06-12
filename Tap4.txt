@@ -104,3 +104,12 @@ export default {
   + component mẹ sẽ nhận tín hiệu có dạng: v-on: tên tín hiệu
   + v-bind viết tắt là:  v-bind: => :
   + v-on viết tắt là: v-on: -> @
+
+========== Tap 4: Xử lý Form và input cơ bản
+- v-model: nối giữa người dùng gửi vào và data của chúng ta
+- event.preventDefault(): để chống lại hành động mặc định của các form
+- component mẹ nhận tín hiệu
+- Xử lý lỗi mỗi lần thêm 1 id mới
+ + Lỗi quy tắc: mỗi key phải là một giá trị đặc trưng (unit)
+ + Xử dụng thư viện: npm i uuid (tự sản xuất ra 1 id đặc trứng cho mình)
+	

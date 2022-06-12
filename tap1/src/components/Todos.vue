@@ -5,6 +5,7 @@
     <p>Việc 3</p>
 </div> -->
 <!-- <p v-for="todo in todos" v-bind:key="todo.id">{{todo}}</p> -->
+    <AddTodo @add-todo="addTodo"/>
     <TodoItem  
      v-for="todo in todos"
      :key="todo.id"
@@ -15,47 +16,49 @@
 </template>
 <script>
 import { ref } from 'vue'
+import {v4 as uuidv4} from 'uuid'
 
 import TodoItem from './TodoItem'
+import AddTodo from './AddTodo'
 
 export default {
     name: 'Todos',
-    components: {TodoItem},
+    components: {TodoItem, AddTodo},
     setup()
         {
         const todos = ref([
             {
-                id: 1,
+                id: uuidv4(),
                 title: ' Viec 1',
                 completed: false
             },
             {
-                id: 2,
+                id: uuidv4(),
                 title: ' Viec 2',
                 completed: false
             },
             {
-                id: 3,
+                id: uuidv4(),
                 title: ' Viec 3',
                 completed: false
             },
             {
-                id: 4,
+                id: uuidv4(),
                 title: ' Viec 4',
                 completed: false
             },
             {
-                id: 5,
+                id: uuidv4(),
                 title: ' Viec 5',
                 completed: false
             },
             {
-                id: 6,
+                id: uuidv4(),
                 title: ' Viec 6',
                 completed: false
             },
             {
-                id: 7,
+                id: uuidv4(),
                 title: ' Viec 7',
                 completed: false
             }
@@ -72,10 +75,15 @@ export default {
             todos.value = todos.value.filter(todo => todo.id !== id)
         }
 
+        const addTodo = newTodo => {
+            todos.value.push(newTodo)
+        }
+
         return {
             todos,
             markItemComplete,
-            deleteTodo
+            deleteTodo,
+            addTodo
         }
     }
 }
